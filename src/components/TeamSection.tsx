@@ -1,5 +1,7 @@
 
 import { useState, useEffect } from "react";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Card, CardContent } from "@/components/ui/card";
 
 interface TeamMember {
   name: string;
@@ -84,22 +86,27 @@ const TeamSection = () => {
           <div className="h-1 w-24 bg-gradient-to-r from-aqua-500 to-forest-500 mx-auto mt-4"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {teamMembers.map((member, index) => (
-            <div 
+            <Card 
               key={index} 
               className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow animate-on-scroll"
             >
-              <div className="h-64 overflow-hidden">
-                <img 
-                  src={member.image} 
-                  alt={member.name} 
-                  className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-500"
-                />
+              <div className="flex justify-center pt-6">
+                <Avatar className="h-48 w-48 border-4 border-aqua-100 shadow-md">
+                  <AvatarImage 
+                    src={member.image} 
+                    alt={member.name}
+                    className="object-cover object-center"
+                  />
+                  <AvatarFallback className="bg-aqua-100 text-aqua-800 text-4xl">
+                    {member.name.split(' ').map(n => n[0]).join('')}
+                  </AvatarFallback>
+                </Avatar>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-800">{member.name}</h3>
-                <p className="text-aqua-600 font-medium mb-4">{member.role}</p>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-bold text-gray-800 text-center mt-2">{member.name}</h3>
+                <p className="text-aqua-600 font-medium mb-4 text-center">{member.role}</p>
                 <p className="text-gray-600 line-clamp-3 mb-4 h-18">{member.bio}</p>
                 <div className="flex justify-between items-center">
                   <div className="flex space-x-3">
@@ -133,8 +140,8 @@ const TeamSection = () => {
                     <p className="text-gray-600">{member.bio}</p>
                   </div>
                 )}
-              </div>
-            </div>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>
