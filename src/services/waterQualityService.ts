@@ -1,20 +1,7 @@
 
-import { supabase } from '@/integrations/supabase/client';
+import { supabase, TableRow } from '@/integrations/supabase/client';
 
-export interface WaterQualityData {
-  id: string;
-  area_id: string;
-  water_body_name: string;
-  observation_date: string;
-  ph_level: number | null;
-  temperature_celsius: number | null;
-  dissolved_oxygen_mg_l: number | null;
-  turbidity_ntu: number | null;
-  pollution_level: string | null;
-  notes: string | null;
-  created_at: string;
-  updated_at: string;
-}
+export type WaterQualityData = TableRow<'water_quality_data'>;
 
 export const getWaterQualityData = async (): Promise<WaterQualityData[]> => {
   const { data, error } = await supabase

@@ -1,15 +1,7 @@
 
-import { supabase } from '@/integrations/supabase/client';
+import { supabase, TableRow } from '@/integrations/supabase/client';
 
-export interface MonitoredArea {
-  id: string;
-  name: string;
-  description: string | null;
-  area_size_hectares: number | null;
-  location: any | null;
-  created_at: string;
-  updated_at: string;
-}
+export type MonitoredArea = TableRow<'monitored_areas'>;
 
 export const getMonitoredAreas = async (): Promise<MonitoredArea[]> => {
   const { data, error } = await supabase

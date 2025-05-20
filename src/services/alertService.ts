@@ -1,19 +1,7 @@
 
-import { supabase } from '@/integrations/supabase/client';
+import { supabase, TableRow } from '@/integrations/supabase/client';
 
-export interface EnvironmentalAlert {
-  id: string;
-  area_id: string;
-  title: string;
-  description: string;
-  alert_type: string;
-  severity: string;
-  reported_date: string;
-  resolved_date: string | null;
-  status: string;
-  created_at: string;
-  updated_at: string;
-}
+export type EnvironmentalAlert = TableRow<'environmental_alerts'>;
 
 export const getEnvironmentalAlerts = async (): Promise<EnvironmentalAlert[]> => {
   const { data, error } = await supabase

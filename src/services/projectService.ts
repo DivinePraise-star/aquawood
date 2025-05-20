@@ -1,19 +1,7 @@
 
-import { supabase } from '@/integrations/supabase/client';
+import { supabase, TableRow } from '@/integrations/supabase/client';
 
-export interface ConservationProject {
-  id: string;
-  name: string;
-  description: string;
-  area_id: string | null;
-  start_date: string;
-  end_date: string | null;
-  budget: number | null;
-  status: string;
-  impact_summary: string | null;
-  created_at: string;
-  updated_at: string;
-}
+export type ConservationProject = TableRow<'conservation_projects'>;
 
 export const getConservationProjects = async (): Promise<ConservationProject[]> => {
   const { data, error } = await supabase

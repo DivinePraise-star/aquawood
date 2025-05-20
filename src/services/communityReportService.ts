@@ -1,20 +1,7 @@
 
-import { supabase } from '@/integrations/supabase/client';
+import { supabase, TableRow } from '@/integrations/supabase/client';
 
-export interface CommunityReport {
-  id: string;
-  reporter_name: string;
-  reporter_contact: string | null;
-  description: string;
-  report_type: string;
-  location: any | null;
-  area_id: string | null;
-  image_url: string | null;
-  submission_date: string;
-  status: string;
-  created_at: string;
-  updated_at: string;
-}
+export type CommunityReport = TableRow<'community_reports'>;
 
 export const getCommunityReports = async (): Promise<CommunityReport[]> => {
   const { data, error } = await supabase

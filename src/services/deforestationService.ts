@@ -1,17 +1,7 @@
 
-import { supabase } from '@/integrations/supabase/client';
+import { supabase, TableRow } from '@/integrations/supabase/client';
 
-export interface DeforestationData {
-  id: string;
-  area_id: string;
-  observation_date: string;
-  forest_cover_percentage: number;
-  deforestation_rate_percentage: number | null;
-  notes: string | null;
-  satellite_imagery_url: string | null;
-  created_at: string;
-  updated_at: string;
-}
+export type DeforestationData = TableRow<'deforestation_data'>;
 
 export const getDeforestationData = async (): Promise<DeforestationData[]> => {
   const { data, error } = await supabase

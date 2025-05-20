@@ -1,17 +1,7 @@
 
-import { supabase } from '@/integrations/supabase/client';
+import { supabase, TableRow } from '@/integrations/supabase/client';
 
-export interface Profile {
-  id: string;
-  first_name: string | null;
-  last_name: string | null;
-  avatar_url: string | null;
-  bio: string | null;
-  organization: string | null;
-  role: string | null;
-  created_at: string;
-  updated_at: string;
-}
+export type Profile = TableRow<'profiles'>;
 
 export const getProfiles = async (): Promise<Profile[]> => {
   const { data, error } = await supabase
